@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elevance Call Rooms</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Video calling</p>
+          <h1>Elevance rooms</h1>
+        </div>
+      </header>
+
+      <section class="panel">
+        <h2>Create room</h2>
+        <form id="create-room-form">
+          <label>
+            Room title
+            <input type="text" name="title" placeholder="Design sync" required />
+          </label>
+
+          <label>
+            Host name
+            <input type="text" name="hostName" placeholder="Host name" required />
+          </label>
+
+          <label class="checkbox-row">
+            <input type="checkbox" name="requireAuth" checked />
+            Require secure join code
+          </label>
+
+          <button type="submit">Create room</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Join room</h2>
+        <form id="join-room-form">
+          <label>
+            Room ID
+            <input type="text" name="roomId" placeholder="room-id" required />
+          </label>
+
+          <label>
+            Name
+            <input type="text" name="userName" placeholder="Your name" required />
+          </label>
+
+          <label>
+            Join code
+            <input type="text" name="joinCode" placeholder="ABC123" required />
+          </label>
+
+          <button type="submit">Join room</button>
+        </form>
+      </section>
+
+      <section class="panel result-panel">
+        <h2>Room status</h2>
+        <pre id="result-output">Waiting for room activity...</pre>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
