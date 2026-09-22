@@ -46,4 +46,47 @@ Next up: Scaffolding the repo and beginning the first real feature task in a fea
 End of day note:
 Basic setup and planning are complete for today. The project is paused for the day, and any further work from this point onward will be recorded under the next date: 2026-09-23.
 
+=== 2026-09-23 ===
+
+--- Entry 1 ---
+Task: Feature 1.1 Completion
+Feature: Video Calling
+
+What was done:
+- Finished the secure room/session foundation for the video calling flow.
+- Added room creation with unique meeting IDs, join codes, host tokens, and participant cap rules.
+- Enforced guest join validation and host authentication checks before a participant could enter a protected call room.
+- Added API tests for valid room creation, valid guest access, invalid join codes, and invalid host tokens.
+
+Files changed:
+- server/src/services/roomService.js
+- server/src/routes/rooms.js
+- server/src/app.js
+- server/tests/rooms.test.js
+- client/index.html
+- client/styles.css
+- client/app.js
+- README.md
+- CHANGELOG.md
+
+Tests:
+- npm test
+- Result: 4 passed, 0 failed
+
+Branch / Commit info:
+- Branch: main
+- Commit: 84de4d8 — feat: scaffold app and add secure room session flow (#1)
+- PR: #1
+
+Decisions / Trade-offs:
+- Kept the first chunk focused on call-room setup only, without pulling in full WebRTC or live media features.
+- Used a controlled room-state model and validation layer so the next UI task has a clean foundation to build on.
+
+Blockers: None.
+
+Time spent: ~1.0 hr
+
+Summary:
+Completed the secure call-room foundation and verified the room creation and join validation flow with tests. The project is now ready to move into the one-to-one call UI work for task 1.2.
+
 
