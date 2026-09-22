@@ -37,6 +37,14 @@ Implemented:
 - participant count limits and duplicate device checks
 - API tests covering create-room, valid join, and invalid access handling
 
+### Task 1.2 — one-to-one call UI and core controls
+
+Implemented:
+- two-person call layout with participant cards and status indicators
+- mute and camera toggles with real-time UI feedback
+- leave-call state handling and participant list updates
+- focused call-state tests covering session creation, mute, camera, and leave behavior
+
 ## Notes
 
 This project follows a sprint-style delivery workflow. Each feature chunk is implemented, tested, and merged before moving to the next one.

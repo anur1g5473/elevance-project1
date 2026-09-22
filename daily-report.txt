@@ -89,4 +89,41 @@ Time spent: ~1.0 hr
 Summary:
 Completed the secure call-room foundation and verified the room creation and join validation flow with tests. The project is now ready to move into the one-to-one call UI work for task 1.2.
 
+--- Entry 2 ---
+Task: Task 1.2 — One-to-one Call UI
+Feature: Video Calling
+
+What was done:
+- Built the initial one-to-one call layout with participant cards, status indicators, and a call header.
+- Added core controls for mute, camera toggle, and leave call behavior.
+- Kept the UI state logic isolated so the call controls are predictable and easy to test.
+- Added call-state tests for session creation, mute toggling, camera toggling, and ending the call.
+
+Files changed:
+- client/index.html
+- client/styles.css
+- client/app.js
+- server/src/services/callSessionState.js
+- server/tests/callSessionState.test.js
+
+Tests:
+- npm test
+- Result: 8 passed, 0 failed
+
+Branch / Commit info:
+- Branch: main
+- Commit: 7b10c2f — feat: add one-to-one call UI controls (#2)
+- PR: #2
+
+Decisions / Trade-offs:
+- Kept this chunk limited to the essential one-to-one call controls without expanding into full media signaling or WebRTC wiring.
+- The state model is intentionally lightweight so it can be upgraded into a real-time calling layer without reworking the UI contract.
+
+Blockers: None.
+
+Time spent: ~1.0 hr
+
+Summary:
+Built and validated the one-to-one call shell, including the core controls and state logic, and kept the feature scoped to the required UI flow without adding broader media complexity.
+
 
