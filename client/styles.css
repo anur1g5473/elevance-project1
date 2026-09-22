@@ -104,3 +104,103 @@ button:hover {
   min-height: 110px;
   white-space: pre-wrap;
 }
+
+.call-panel {
+  display: block;
+}
+
+.call-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.status-badge {
+  background: rgba(31, 157, 99, 0.12);
+  color: var(--success);
+  border-radius: 999px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.participant-card {
+  background: #f7f9ff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.participant-badge {
+  display: inline-block;
+  background: #e9edff;
+  color: var(--accent-dark);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin: 0 auto 0.7rem;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--accent), #7e9dff);
+  color: white;
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
+.remote-avatar {
+  background: linear-gradient(135deg, #1f9d63, #57d39e);
+}
+
+.participant-list-wrap {
+  margin-bottom: 1rem;
+}
+
+#participant-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  color: var(--muted);
+}
+
+.call-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.secondary-button,
+.danger-button {
+  border: 0;
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.secondary-button {
+  background: #eef2ff;
+  color: var(--accent-dark);
+}
+
+.danger-button {
+  background: #fbe7e8;
+  color: #b42318;
+}

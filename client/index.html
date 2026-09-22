@@ -63,6 +63,46 @@
         <h2>Room status</h2>
         <pre id="result-output">Waiting for room activity...</pre>
       </section>
+
+      <section class="panel call-panel" id="call-panel">
+        <div class="call-header">
+          <div>
+            <p class="eyebrow">One-to-one call</p>
+            <h2 id="call-title">Alicia &amp; Sam</h2>
+          </div>
+          <span id="call-status" class="status-badge">Connected</span>
+        </div>
+
+        <div class="video-grid">
+          <article class="participant-card local-card">
+            <div class="participant-badge">You</div>
+            <div class="avatar">A</div>
+            <h3 id="local-name">Alicia</h3>
+            <p id="local-meta">Mic on • Camera on</p>
+          </article>
+
+          <article class="participant-card remote-card">
+            <div class="participant-badge">Guest</div>
+            <div class="avatar remote-avatar">S</div>
+            <h3 id="remote-name">Sam</h3>
+            <p id="remote-meta">Mic on • Camera on</p>
+          </article>
+        </div>
+
+        <div class="participant-list-wrap">
+          <h3>Participants</h3>
+          <ul id="participant-list">
+            <li>Alicia • Host</li>
+            <li>Sam • Guest</li>
+          </ul>
+        </div>
+
+        <div class="call-controls">
+          <button class="secondary-button" data-action="mute">Mute</button>
+          <button class="secondary-button" data-action="camera">Camera on</button>
+          <button class="danger-button" data-action="leave">Leave call</button>
+        </div>
+      </section>
     </main>
 
     <script src="/app.js"></script>
