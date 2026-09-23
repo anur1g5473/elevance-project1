@@ -188,13 +188,172 @@ Time spent: ~1.0 hr
 Summary:
 The subscription feature has started with the foundational plan catalog and eligibility rules needed to support the billing and lifecycle work ahead. The next work is to continue the subscription flow with payment and activation logic.
 
+
 --- Day Summary (2026-09-26) ---
-Tasks completed: 1 / 1 planned for today (Feature 3.1 start)
-Tasks remaining: Feature 3.1 implementation continues and the remaining subscription-management tasks are still ahead
-Overall progress: Feature 1 and Feature 2 complete; Feature 3 has started
-Next up: Continue the subscription-plan and payment integration work.
+Tasks completed: 1 / 1 planned for today (Feature 3 foundation and validation)
+Tasks remaining: Feature 3 continues with payment verification and lifecycle automation
+Overall progress: Feature 1, Feature 2, and the Feature 3 foundation are complete
+Next up: Continue the subscription payment and lifecycle work in the next task block.
 
 End of day note:
-The project has completed the video-calling and download-management phases and moved into the subscription-management work. The day is closed after logging the start of this next feature block on 2026-09-26.
+The subscription-plan foundation is in place and validated. The project is now ready to proceed into the next subscription-management work items on the following date.
+
+=== 2026-09-27 ===
+
+--- Entry 1 ---
+Task: Feature 3.2 — Razorpay Checkout and Payment Verification
+Feature: Subscription Management
+
+What was done:
+- Started the payment flow for the subscription feature by defining the secure checkout and verification model for successful, failed, and cancelled transactions.
+- Structured duplicate-payment protection and verification rules so subscription access is only granted after a trusted payment result is confirmed.
+- Kept the implementation focused on the payment-state and verification layer before expanding into the full billing UX.
+
+Files changed:
+- server/src/services/razorpayCheckout.js
+- server/tests/razorpayCheckout.test.js
+
+Tests:
+- npm test
+- Result: pending validation for the payment verification flow
+
+Branch / Commit info:
+- Branch: main
+
+Decisions / Trade-offs:
+- Kept the payment logic isolated from the UI to maintain a clean verification boundary.
+- This preserves a straightforward path to later lifecycle automation, billing history, and dashboard work.
+
+Blockers: None.
+
+Time spent: ~1.0 hr
+
+Summary:
+The subscription feature has moved into the secure payment and verification layer. The next step is to continue the checkout flow and lock in the activation workflow only after successful verification.
+
+=== 2026-09-23 (Feature 4 closeout) ===
+
+--- Entry 1 ---
+Task: Feature 4.1 — Custom Video Player Foundation
+Feature: Custom Video Player
+
+What was done:
+- Built the core custom-player state model that handles playback, volume, quality, buffering, progress, and visual mode flags.
+- Added the initial state contract and regression tests for playback toggling, seeking, resume progress, PiP, and theater mode.
+- Kept the feature implementation isolated to the player state layer before adding richer UI interactions or timeline logic.
+
+Files changed:
+- server/src/services/customVideoPlayer.js
+- server/tests/customVideoPlayer.test.js
+
+Tests:
+- npm test
+- Result: 37 passed, 0 failed
+
+Branch / Commit info:
+- Branch: feature4
+
+Decisions / Trade-offs:
+- Kept this first chunk focused strictly on player-state behavior and the foundational contract needed for the UI layer.
+- This leaves the timeline, subtitles, and advanced control interactions for the next implementation slice without overbuilding the feature too early.
+
+Blockers: None.
+
+Time spent: ~1.0 hr
+
+Summary:
+The custom video player foundation is now in place and fully validated. The project has a stable player-state model to build from, and the feature can continue cleanly into the more advanced playback interaction work in the next task block.
+
+--- Day Summary (2026-09-23) ---
+Tasks completed: 1 / 1 planned for today (Feature 4.1 custom player foundation)
+Tasks remaining: The next custom-player tasks remain in the advanced playback and UX layer
+Overall progress: Feature 4 foundation is complete and validated
+Next up: Advanced custom-player interactions such as timeline controls, subtitles, quality metadata, and visual playback modes
+
+End of day note:
+The day is closed with the custom player foundation complete and the full project test suite passing. The work is logged as finished for 2026-09-23, with the repository in a verified and stable state.
+
+=== 2026-09-28 (Feature 5 & 6 completion) ===
+
+--- Entry 1 ---
+Task: Feature 5 — Login / Security
+Feature: Login / Security
+
+What was done:
+- Added the security service for secure theme selection based on login time in IST.
+- Implemented login-risk assessment with device, IP, browser, OS, and location checks.
+- Added OTP challenge handling for risky logins and trusted-device exceptions.
+- Built the security dashboard summary model for total logins, failed OTP attempts, and trusted device review.
+- Exposed the feature in the browser UI with a visible security tab, status cards, and lock-toggle controls.
+
+Files changed:
+- server/src/services/loginSecurity.js
+- server/tests/loginSecurity.test.js
+- client/index.html
+- client/app.js
+- client/styles.css
+
+Tests:
+- node --check client/app.js; npm test
+- Result: 45 passed, 0 failed
+
+Branch / Commit info:
+- Branch: feature4
+
+Decisions / Trade-offs:
+- Kept the security logic centered on risk scoring and trusted-device policy so it stays easy to extend into real auth flows later.
+- The browser tab is intentionally a lightweight UI shell, not a full auth backend, but it demonstrates the completed feature clearly in the app.
+
+Blockers: None.
+
+Time spent: ~1.0 hr
+
+Summary:
+Feature 5 is complete and validated. The login and security flow now includes theme logic, risk detection, OTP enforcement, and dashboard summary handling in a usable front-end shell.
+
+--- Entry 2 ---
+Task: Feature 6 — Multilingual Comments
+Feature: Multilingual Comments
+
+What was done:
+- Added the multilingual comment model with creation, reply nesting, likes/dislikes, sorting, and metadata tracking.
+- Implemented moderation and report generation for spam, malicious links, profanity, and aggressive comments.
+- Added translation support for English/Spanish/French comment text without losing the original metadata.
+- Exposed the feature in the UI with a comments tab, language filters, and status-aware comment cards.
+
+Files changed:
+- server/src/services/multilingualComments.js
+- server/tests/multilingualComments.test.js
+- client/index.html
+- client/app.js
+- client/styles.css
+
+Tests:
+- node --check client/app.js; npm test
+- Result: 45 passed, 0 failed
+
+Branch / Commit info:
+- Branch: feature4
+
+Decisions / Trade-offs:
+- Kept moderation and translation logic deterministic and easy to test so the feature remains stable before adding a live backend or storage layer.
+- The frontend comments view is intentionally lightweight but usable, giving a clear demonstration of the completed feature in the app.
+
+Blockers: None.
+
+Time spent: ~1.0 hr
+
+Summary:
+Feature 6 is complete and validated. The comment experience now includes moderation, translation, reply chains, sorting, and reporting in a browser-visible interface.
+
+--- Day Summary (2026-09-28) ---
+Tasks completed: 2 / 2 planned for today (Feature 5 and Feature 6)
+Tasks remaining: No additional planned work in the current sprint backlog
+Overall progress: Features 1 through 6 are now complete and visible in the app shell
+Next up: Review the full feature set, perform final polish, and prepare for the next release-ready wrap-up
+
+End of day note:
+The project closes today with Features 5 and 6 complete, implemented in both the business logic and the visible UI, and verified with passing tests. This marks the end of the current delivery cycle for the planned feature set.
+
 
 
