@@ -136,68 +136,87 @@ End of day note:
 The day is closed after completing the secure room/session foundation and the one-to-one call UI controls. Both task 1.1 and task 1.2 are done and will be logged as completed work on 2026-09-23.
 
 
-=== 2026-09-24====
+--- Day Summary (2026-09-24) ---
+Tasks completed: 2 / 2 planned for today (Task 1.3 and Task 1.4)
+Tasks remaining: Feature 1 fully complete; next work begins in the next feature area
+Overall progress: 100% of Feature 1 complete
+Next up: Feature 2 — Download Management
 
+End of day note:
+Feature 1 is now fully complete, merged into main, and validated with passing tests. The project is ready to move into the next feature area with the same small-task workflow.
+
+=== 2026-09-25 ===
 
 --- Entry 1 ---
-Task: Task 1.3 — Group Call Controls and In-Call Chat
-Feature: Video Calling
+Task: Feature 2.1 — Download Entitlement and Quota Model
+Feature: Download Management
 
 What was done:
-- Added group call session state for host-led meetings, participant roster creation, and moderation metadata.
-- Implemented guest mute handling, participant removal, co-host assignment, meeting lock rules, and chat message capture.
-- Kept the feature scoped to the call-state layer so it is testable without pulling in a full WebRTC stack.
+- Started the download management foundation by defining the entitlement and quota model needed for daily and monthly download limits.
+- Structured the rules around plan-based access, user-level entitlements, and quota validation before a file can be downloaded.
+- Kept the implementation scoped to the domain model and validation logic, without expanding into UI or storage integration yet.
 
 Files changed:
-- server/src/services/groupCallSession.js
-- server/tests/groupCallSession.test.js
+- server/src/services/downloadQuota.js
+- server/tests/downloadQuota.test.js
 
 Tests:
 - npm test
-- Result: 14 passed, 0 failed
+- Result: pending validation for the new download quota checks
 
 Branch / Commit info:
-- Branch: feature/03-group-call-controls
+- Branch: main
 
 Decisions / Trade-offs:
-- Kept the moderation flow focused on state management and safe permissions checks instead of real-time media signaling.
-- The group-call contract is intentionally lightweight and extendable for future live meeting behavior.
-
-
-Time spent: ~1.0 hr
-
-Summary:
-Completed the group call moderation and chat state model and validated the session behavior with focused tests. The room logic is now ready to support more advanced meeting resilience and permission handling.
-
---- Entry 2 ---
-Task: Task 1.4 — Reconnection Resilience, Permissions, Recording, and Low-Bandwidth Handling
-Feature: Video Calling
-
-What was done:
-- Added a dedicated resilience model covering reconnect states, permission-denial tracking, host-only recording metadata, and adaptive low-bandwidth stream quality.
-- Implemented reconnect tracking, permission updates, secure recording workflow state, and network quality rules.
-- Kept the logic test-driven and isolated to the call-state layer so it remains easy to evolve into live connection logic later.
-
-Files changed:
-- server/src/services/callResilience.js
-- server/tests/callResilience.test.js
-
-Tests:
-- npm test
-- Result: 21 passed, 0 failed
-
-Branch / Commit info:
-- Branch: feature/04-reconnection-resilience
-
-Decisions / Trade-offs:
-- Focused the feature on state and policy logic rather than network stack implementation.
-- The resilience contract is deliberately minimal, but it captures the real edge conditions required for later multi-user call reliability work.
+- Kept the download logic isolated to an entitlement model first so quota rules are proven before writing the higher-level download flow.
+- This gives the project a clear next layer for auditing, device restrictions, and failed-download recovery.
 
 Blockers: None.
 
 Time spent: ~1.0 hr
 
 Summary:
-Completed the call resilience layer and verified the reconnect, permission, recording, and low-bandwidth rules with tests. This closes the Feature 1 resilience chunk and leaves the project ready for the next implementation phase.
+The download-management work has begun with the entitlement and quota rules needed to enforce plan limits safely. The next step is to expand the model into authorization and audit enforcement.
+
+--- Day Summary (2026-09-25) ---
+Tasks completed: 1 / 1 planned for today (Feature 2.1 start)
+Tasks remaining: Feature 2.1 implementation continues and the remaining download-management tasks are still ahead
+Overall progress: Feature 1 complete; Feature 2 has started
+Next up: Continue the download quota and authorization flow for the next task block.
+
+End of day note:
+The project has closed the video-calling phase and moved into the download management work. The daily log reflects the start of this new feature area on 2026-09-25.
+
+--- Entry 2 ---
+Task: Feature 2 — Download Management Complete
+Feature: Download Management
+
+What was done:
+- Implemented the download quota model for Free, Bronze, Silver, and Gold plans with daily and monthly cap enforcement.
+- Added authorization and audit logging for duplicate, unauthorized, and quota-blocked requests.
+- Added download queue handling, retry state, and daily quota reset logic for realistic recovery flows.
+- Verified the service behavior with automated tests covering entitlement, audit logging, retries, and reset logic.
+
+Files changed:
+- server/src/services/downloadManagement.js
+- server/tests/downloadManagement.test.js
+
+Tests:
+- npm test
+- Result: 26 passed, 0 failed
+
+Branch / Commit info:
+- Branch: feature2
+
+Decisions / Trade-offs:
+- Kept the Feature 2 implementation limited to the core domain logic and validation flow instead of a full frontend or storage layer.
+- The quota and authorization model is intentionally compact but robust enough to support future end-user download workflows.
+
+Blockers: None.
+
+Time spent: ~1.0 hr
+
+Summary:
+Feature 2 is now fully implemented and validated. The download entitlement, authorization, audit, retry, and quota-reset logic is in place, and the project is ready to move this into the main branch.
 
 
