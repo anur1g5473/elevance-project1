@@ -3,104 +3,317 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Elevance Call Rooms</title>
+    <title>Elevance Platform</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <main class="app-shell">
       <header class="topbar">
         <div>
-          <p class="eyebrow">Video calling</p>
-          <h1>Elevance rooms</h1>
+          <p class="eyebrow">Platform overview</p>
+          <h1>Elevance features</h1>
         </div>
+
+        <nav class="feature-nav" aria-label="Feature navigation">
+          <button class="feature-tab is-active" data-feature-tab="video-calling">Video Calling</button>
+          <button class="feature-tab" data-feature-tab="downloads">Downloads</button>
+          <button class="feature-tab" data-feature-tab="subscriptions">Subscriptions</button>
+          <button class="feature-tab" data-feature-tab="player">Video Player</button>
+          <button class="feature-tab" data-feature-tab="security">Security</button>
+          <button class="feature-tab" data-feature-tab="comments">Comments</button>
+        </nav>
       </header>
 
-      <section class="panel">
-        <h2>Create room</h2>
-        <form id="create-room-form">
-          <label>
-            Room title
-            <input type="text" name="title" placeholder="Design sync" required />
-          </label>
+      <section class="feature-panel is-active" id="video-calling">
+        <section class="panel">
+          <h2>Create room</h2>
+          <form id="create-room-form">
+            <label>
+              Room title
+              <input type="text" name="title" placeholder="Design sync" required />
+            </label>
 
-          <label>
-            Host name
-            <input type="text" name="hostName" placeholder="Host name" required />
-          </label>
+            <label>
+              Host name
+              <input type="text" name="hostName" placeholder="Host name" required />
+            </label>
 
-          <label class="checkbox-row">
-            <input type="checkbox" name="requireAuth" checked />
-            Require secure join code
-          </label>
+            <label class="checkbox-row">
+              <input type="checkbox" name="requireAuth" checked />
+              Require secure join code
+            </label>
 
-          <button type="submit">Create room</button>
-        </form>
-      </section>
+            <button type="submit">Create room</button>
+          </form>
+        </section>
 
-      <section class="panel">
-        <h2>Join room</h2>
-        <form id="join-room-form">
-          <label>
-            Room ID
-            <input type="text" name="roomId" placeholder="room-id" required />
-          </label>
+        <section class="panel">
+          <h2>Join room</h2>
+          <form id="join-room-form">
+            <label>
+              Room ID
+              <input type="text" name="roomId" placeholder="room-id" required />
+            </label>
 
-          <label>
-            Name
-            <input type="text" name="userName" placeholder="Your name" required />
-          </label>
+            <label>
+              Name
+              <input type="text" name="userName" placeholder="Your name" required />
+            </label>
 
-          <label>
-            Join code
-            <input type="text" name="joinCode" placeholder="ABC123" required />
-          </label>
+            <label>
+              Join code
+              <input type="text" name="joinCode" placeholder="ABC123" required />
+            </label>
 
-          <button type="submit">Join room</button>
-        </form>
-      </section>
+            <button type="submit">Join room</button>
+          </form>
+        </section>
 
-      <section class="panel result-panel">
-        <h2>Room status</h2>
-        <pre id="result-output">Waiting for room activity...</pre>
-      </section>
+        <section class="panel result-panel">
+          <h2>Room status</h2>
+          <pre id="result-output">Waiting for room activity...</pre>
+        </section>
 
-      <section class="panel call-panel" id="call-panel">
-        <div class="call-header">
-          <div>
-            <p class="eyebrow">One-to-one call</p>
-            <h2 id="call-title">Alicia &amp; Sam</h2>
+        <section class="panel call-panel" id="call-panel">
+          <div class="call-header">
+            <div>
+              <p class="eyebrow">One-to-one call</p>
+              <h2 id="call-title">Alicia &amp; Sam</h2>
+            </div>
+            <span id="call-status" class="status-badge">Connected</span>
           </div>
-          <span id="call-status" class="status-badge">Connected</span>
+
+          <div class="video-grid">
+            <article class="participant-card local-card">
+              <div class="participant-badge">You</div>
+              <div class="avatar">A</div>
+              <h3 id="local-name">Alicia</h3>
+              <p id="local-meta">Mic on • Camera on</p>
+            </article>
+
+            <article class="participant-card remote-card">
+              <div class="participant-badge">Guest</div>
+              <div class="avatar remote-avatar">S</div>
+              <h3 id="remote-name">Sam</h3>
+              <p id="remote-meta">Mic on • Camera on</p>
+            </article>
+          </div>
+
+          <div class="participant-list-wrap">
+            <h3>Participants</h3>
+            <ul id="participant-list">
+              <li>Alicia • Host</li>
+              <li>Sam • Guest</li>
+            </ul>
+          </div>
+
+          <div class="call-controls">
+            <button class="secondary-button" data-action="mute">Mute</button>
+            <button class="secondary-button" data-action="camera">Camera on</button>
+            <button class="danger-button" data-action="leave">Leave call</button>
+          </div>
+        </section>
+      </section>
+
+      <section class="feature-panel" id="downloads">
+        <div class="panel feature-shell">
+          <div class="feature-header-row">
+            <div>
+              <p class="eyebrow">Download management</p>
+              <h2>Library access controls</h2>
+            </div>
+            <span class="pill">Free plan</span>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span>Used today</span>
+              <strong id="download-used">14 MB</strong>
+            </div>
+            <div class="stat-card">
+              <span>Remaining</span>
+              <strong id="download-remaining">6 MB</strong>
+            </div>
+            <div class="stat-card">
+              <span>Queue</span>
+              <strong id="download-queue">2 active</strong>
+            </div>
+          </div>
+
+          <div class="download-actions">
+            <button class="action-button" data-download-size="4">Download 720p</button>
+            <button class="action-button secondary" data-download-size="8">Download 1080p</button>
+            <button class="action-button warning" data-download-size="20">Download 4K</button>
+          </div>
+
+          <div class="panel inner-panel">
+            <h3>Recent activity</h3>
+            <ul id="download-log" class="activity-list"></ul>
+          </div>
         </div>
+      </section>
 
-        <div class="video-grid">
-          <article class="participant-card local-card">
-            <div class="participant-badge">You</div>
-            <div class="avatar">A</div>
-            <h3 id="local-name">Alicia</h3>
-            <p id="local-meta">Mic on • Camera on</p>
-          </article>
+      <section class="feature-panel" id="subscriptions">
+        <div class="panel feature-shell">
+          <div class="feature-header-row">
+            <div>
+              <p class="eyebrow">Subscriptions</p>
+              <h2>Membership plans</h2>
+            </div>
+            <span class="pill" id="active-plan-pill">Free</span>
+          </div>
 
-          <article class="participant-card remote-card">
-            <div class="participant-badge">Guest</div>
-            <div class="avatar remote-avatar">S</div>
-            <h3 id="remote-name">Sam</h3>
-            <p id="remote-meta">Mic on • Camera on</p>
-          </article>
+          <div class="plan-grid">
+            <article class="plan-card is-selected" data-plan-card="Free">
+              <h3>Free</h3>
+              <p class="price">$0</p>
+              <ul>
+                <li>Basic access</li>
+                <li>1 device</li>
+                <li>Limited downloads</li>
+              </ul>
+              <button class="plan-button" data-plan-select="Free">Current plan</button>
+            </article>
+
+            <article class="plan-card" data-plan-card="Bronze">
+              <h3>Bronze</h3>
+              <p class="price">$9/mo</p>
+              <ul>
+                <li>HD access</li>
+                <li>Priority support</li>
+                <li>10 downloads/day</li>
+              </ul>
+              <button class="plan-button" data-plan-select="Bronze">Switch</button>
+            </article>
+
+            <article class="plan-card" data-plan-card="Silver">
+              <h3>Silver</h3>
+              <p class="price">$19/mo</p>
+              <ul>
+                <li>4K libraries</li>
+                <li>Family profile</li>
+                <li>Unlimited downloads</li>
+              </ul>
+              <button class="plan-button" data-plan-select="Silver">Switch</button>
+            </article>
+
+            <article class="plan-card" data-plan-card="Gold">
+              <h3>Gold</h3>
+              <p class="price">$29/mo</p>
+              <ul>
+                <li>Premium catalog</li>
+                <li>Multi-device sync</li>
+                <li>Advanced analytics</li>
+              </ul>
+              <button class="plan-button" data-plan-select="Gold">Upgrade</button>
+            </article>
+          </div>
         </div>
+      </section>
 
-        <div class="participant-list-wrap">
-          <h3>Participants</h3>
-          <ul id="participant-list">
-            <li>Alicia • Host</li>
-            <li>Sam • Guest</li>
+      <section class="feature-panel" id="player">
+        <div class="panel feature-shell">
+          <div class="feature-header-row">
+            <div>
+              <p class="eyebrow">Custom player</p>
+              <h2>Playback controls</h2>
+            </div>
+            <span class="pill" id="quality-pill">1080p</span>
+          </div>
+
+          <div class="player-stage" id="player-stage">
+            <div class="player-overlay">
+              <span class="player-badge">Now playing</span>
+              <h3 id="player-title">Studio session recap</h3>
+            </div>
+          </div>
+
+          <div class="player-toolbar">
+            <button id="play-toggle" class="action-button">Play</button>
+            <button id="subtitle-toggle" class="action-button secondary">Subtitles off</button>
+            <button id="pip-toggle" class="action-button secondary">PiP off</button>
+            <button id="theater-toggle" class="action-button secondary">Theater off</button>
+          </div>
+
+          <div class="slider-row">
+            <label>
+              Progress
+              <input id="player-progress" type="range" min="0" max="100" value="28" />
+            </label>
+            <label>
+              Volume
+              <input id="player-volume" type="range" min="0" max="100" value="80" />
+            </label>
+          </div>
+
+          <div class="quality-row">
+            <label>
+              Quality
+              <select id="player-quality">
+                <option value="240p">240p</option>
+                <option value="480p">480p</option>
+                <option value="720p">720p</option>
+                <option value="1080p" selected>1080p</option>
+                <option value="4K">4K</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-panel" id="security">
+        <div class="panel feature-shell">
+          <div class="feature-header-row">
+            <div>
+              <p class="eyebrow">Security</p>
+              <h2>Login &amp; access controls</h2>
+            </div>
+            <span class="pill success-pill">Protected</span>
+          </div>
+
+          <div class="security-grid">
+            <div class="security-card">
+              <h3>Session status</h3>
+              <p>Authenticated</p>
+            </div>
+            <div class="security-card">
+              <h3>MFA</h3>
+              <p>Enabled</p>
+            </div>
+            <div class="security-card">
+              <h3>Last login</h3>
+              <p>2 min ago</p>
+            </div>
+          </div>
+          <button class="action-button" id="security-toggle">Lock session</button>
+        </div>
+      </section>
+
+      <section class="feature-panel" id="comments">
+        <div class="panel feature-shell">
+          <div class="feature-header-row">
+            <div>
+              <p class="eyebrow">Comments</p>
+              <h2>Multilingual feedback</h2>
+            </div>
+            <span class="pill">6 comments</span>
+          </div>
+
+          <div class="comment-toolbar">
+            <button class="lang-button is-active" data-language="all">All</button>
+            <button class="lang-button" data-language="en">English</button>
+            <button class="lang-button" data-language="es">Español</button>
+            <button class="lang-button" data-language="fr">Français</button>
+          </div>
+
+          <ul id="comment-list" class="comment-list">
+            <li data-language="en"><strong>Emma:</strong> The workflow is smooth and easy to follow.</li>
+            <li data-language="es"><strong>Mateo:</strong> La experiencia de acceso es muy clara y fiable.</li>
+            <li data-language="fr"><strong>Claire:</strong> Les contrôles sont très lisibles et rapides.</li>
+            <li data-language="en"><strong>Omar:</strong> The player controls feel responsive and polished.</li>
+            <li data-language="es"><strong>Sofía:</strong> Me gusta la opción de subtítulos y calidad ajustable.</li>
+            <li data-language="fr"><strong>Lucas:</strong> Les notifications de sécurité sont bien visibles.</li>
           </ul>
-        </div>
-
-        <div class="call-controls">
-          <button class="secondary-button" data-action="mute">Mute</button>
-          <button class="secondary-button" data-action="camera">Camera on</button>
-          <button class="danger-button" data-action="leave">Leave call</button>
         </div>
       </section>
     </main>
