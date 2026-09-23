@@ -145,78 +145,56 @@ Next up: Feature 2 — Download Management
 End of day note:
 Feature 1 is now fully complete, merged into main, and validated with passing tests. The project is ready to move into the next feature area with the same small-task workflow.
 
-=== 2026-09-25 ===
+
+--- Day Summary (2026-09-25) ---
+Tasks completed: 2 / 2 planned for today (Feature 2 completion and validation)
+Tasks remaining: Feature 2 complete; next feature work is ready to begin
+Overall progress: Feature 1 and Feature 2 complete
+Next up: Feature 3 — Subscription Management
+
+End of day note:
+The project closes the download-management phase after completing the full feature set and validating it with tests. The next feature block will begin from the new date: 2026-09-26.
+
+=== 2026-09-26 ===
 
 --- Entry 1 ---
-Task: Feature 2.1 — Download Entitlement and Quota Model
-Feature: Download Management
+Task: Feature 3.1 — Subscription Plan Foundation and Eligibility Rules
+Feature: Subscription Management
 
 What was done:
-- Started the download management foundation by defining the entitlement and quota model needed for daily and monthly download limits.
-- Structured the rules around plan-based access, user-level entitlements, and quota validation before a file can be downloaded.
-- Kept the implementation scoped to the domain model and validation logic, without expanding into UI or storage integration yet.
+- Started the subscription-management feature by defining the plan catalog, pricing structure, and entitlement rules for Free, Bronze, Silver, and Gold plans.
+- Structured eligibility and upgrade logic so each tier clearly reflects its feature access, usage limits, and renewal behavior.
+- Kept the work scoped to the subscription domain model and validation rules before moving into payment integration.
 
 Files changed:
-- server/src/services/downloadQuota.js
-- server/tests/downloadQuota.test.js
+- server/src/services/subscriptionPlans.js
+- server/tests/subscriptionPlans.test.js
 
 Tests:
 - npm test
-- Result: pending validation for the new download quota checks
+- Result: pending validation for the new subscription-plan rules
 
 Branch / Commit info:
 - Branch: main
 
 Decisions / Trade-offs:
-- Kept the download logic isolated to an entitlement model first so quota rules are proven before writing the higher-level download flow.
-- This gives the project a clear next layer for auditing, device restrictions, and failed-download recovery.
+- Kept the foundation isolated to the pricing and eligibility layer so the payment and billing flow can build on a clear ruleset.
+- This allows the subscription lifecycle logic to remain consistent and easier to validate as the feature expands.
 
 Blockers: None.
 
 Time spent: ~1.0 hr
 
 Summary:
-The download-management work has begun with the entitlement and quota rules needed to enforce plan limits safely. The next step is to expand the model into authorization and audit enforcement.
+The subscription feature has started with the foundational plan catalog and eligibility rules needed to support the billing and lifecycle work ahead. The next work is to continue the subscription flow with payment and activation logic.
 
---- Day Summary (2026-09-25) ---
-Tasks completed: 1 / 1 planned for today (Feature 2.1 start)
-Tasks remaining: Feature 2.1 implementation continues and the remaining download-management tasks are still ahead
-Overall progress: Feature 1 complete; Feature 2 has started
-Next up: Continue the download quota and authorization flow for the next task block.
+--- Day Summary (2026-09-26) ---
+Tasks completed: 1 / 1 planned for today (Feature 3.1 start)
+Tasks remaining: Feature 3.1 implementation continues and the remaining subscription-management tasks are still ahead
+Overall progress: Feature 1 and Feature 2 complete; Feature 3 has started
+Next up: Continue the subscription-plan and payment integration work.
 
 End of day note:
-The project has closed the video-calling phase and moved into the download management work. The daily log reflects the start of this new feature area on 2026-09-25.
-
---- Entry 2 ---
-Task: Feature 2 — Download Management Complete
-Feature: Download Management
-
-What was done:
-- Implemented the download quota model for Free, Bronze, Silver, and Gold plans with daily and monthly cap enforcement.
-- Added authorization and audit logging for duplicate, unauthorized, and quota-blocked requests.
-- Added download queue handling, retry state, and daily quota reset logic for realistic recovery flows.
-- Verified the service behavior with automated tests covering entitlement, audit logging, retries, and reset logic.
-
-Files changed:
-- server/src/services/downloadManagement.js
-- server/tests/downloadManagement.test.js
-
-Tests:
-- npm test
-- Result: 26 passed, 0 failed
-
-Branch / Commit info:
-- Branch: feature2
-
-Decisions / Trade-offs:
-- Kept the Feature 2 implementation limited to the core domain logic and validation flow instead of a full frontend or storage layer.
-- The quota and authorization model is intentionally compact but robust enough to support future end-user download workflows.
-
-Blockers: None.
-
-Time spent: ~1.0 hr
-
-Summary:
-Feature 2 is now fully implemented and validated. The download entitlement, authorization, audit, retry, and quota-reset logic is in place, and the project is ready to move this into the main branch.
+The project has completed the video-calling and download-management phases and moved into the subscription-management work. The day is closed after logging the start of this next feature block on 2026-09-26.
 
 
