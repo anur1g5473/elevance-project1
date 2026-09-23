@@ -126,4 +126,78 @@ Time spent: ~1.0 hr
 Summary:
 Built and validated the one-to-one call shell, including the core controls and state logic, and kept the feature scoped to the required UI flow without adding broader media complexity.
 
+--- Day Summary (2026-09-23) ---
+Tasks completed: 2 / 2 planned for today (Task 1.1 and Task 1.2)
+Tasks remaining: 2 feature tasks remaining in Feature 1 (Task 1.3 and Task 1.4)
+Overall progress: ~25% of Feature 1 is complete
+Next up: Group call moderation, in-call chat, and stability work for the video calling feature.
+
+End of day note:
+The day is closed after completing the secure room/session foundation and the one-to-one call UI controls. Both task 1.1 and task 1.2 are done and will be logged as completed work on 2026-09-23.
+
+
+=== 2026-09-24====
+
+
+--- Entry 1 ---
+Task: Task 1.3 — Group Call Controls and In-Call Chat
+Feature: Video Calling
+
+What was done:
+- Added group call session state for host-led meetings, participant roster creation, and moderation metadata.
+- Implemented guest mute handling, participant removal, co-host assignment, meeting lock rules, and chat message capture.
+- Kept the feature scoped to the call-state layer so it is testable without pulling in a full WebRTC stack.
+
+Files changed:
+- server/src/services/groupCallSession.js
+- server/tests/groupCallSession.test.js
+
+Tests:
+- npm test
+- Result: 14 passed, 0 failed
+
+Branch / Commit info:
+- Branch: feature/03-group-call-controls
+
+Decisions / Trade-offs:
+- Kept the moderation flow focused on state management and safe permissions checks instead of real-time media signaling.
+- The group-call contract is intentionally lightweight and extendable for future live meeting behavior.
+
+
+Time spent: ~1.0 hr
+
+Summary:
+Completed the group call moderation and chat state model and validated the session behavior with focused tests. The room logic is now ready to support more advanced meeting resilience and permission handling.
+
+--- Entry 2 ---
+Task: Task 1.4 — Reconnection Resilience, Permissions, Recording, and Low-Bandwidth Handling
+Feature: Video Calling
+
+What was done:
+- Added a dedicated resilience model covering reconnect states, permission-denial tracking, host-only recording metadata, and adaptive low-bandwidth stream quality.
+- Implemented reconnect tracking, permission updates, secure recording workflow state, and network quality rules.
+- Kept the logic test-driven and isolated to the call-state layer so it remains easy to evolve into live connection logic later.
+
+Files changed:
+- server/src/services/callResilience.js
+- server/tests/callResilience.test.js
+
+Tests:
+- npm test
+- Result: 21 passed, 0 failed
+
+Branch / Commit info:
+- Branch: feature/04-reconnection-resilience
+
+Decisions / Trade-offs:
+- Focused the feature on state and policy logic rather than network stack implementation.
+- The resilience contract is deliberately minimal, but it captures the real edge conditions required for later multi-user call reliability work.
+
+Blockers: None.
+
+Time spent: ~1.0 hr
+
+Summary:
+Completed the call resilience layer and verified the reconnect, permission, recording, and low-bandwidth rules with tests. This closes the Feature 1 resilience chunk and leaves the project ready for the next implementation phase.
+
 
